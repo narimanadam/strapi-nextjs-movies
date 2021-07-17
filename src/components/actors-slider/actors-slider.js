@@ -23,7 +23,6 @@ const SwiperSlider = ({ actors }) => {
             <a>
               <Image
                 src={`${image.url}`}
-                data-srcset={`${image.url}`}
                 alt={`${first_name} ${last_name}`}
                 className="swiper-lazy"
                 width={205}
