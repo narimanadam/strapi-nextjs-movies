@@ -2,7 +2,6 @@ import Link from "next/link";
 import React from "react";
 import Swiper from "react-id-swiper";
 import Image from "next/image";
-import { buildUrl } from "cloudinary-build-url";
 import * as Styled from "./actors-slider.styles";
 
 const SwiperSlider = ({ actors }) => {
@@ -17,39 +16,27 @@ const SwiperSlider = ({ actors }) => {
 
   return (
     <Swiper {...params}>
-      {actors.map(({ id, first_name, last_name, image }) => {
-        const url = buildUrl(image.url, {
-          cloud: {
-            cloudName: "narimanadam",
-          },
-          transformations: {
-            resize: {
-              type: "scale",
-            },
-          },
-        });
-        return (
-          <div className="swiper-slide">
-            <Link href="/actors/[id]" as={`/actors/${id}`}>
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-              <a>
-                <Image
-                  src={url}
-                  alt={`${first_name} ${last_name}`}
-                  loading="lazy"
-                  className="swiper-lazy"
-                  width={205}
-                  height={300}
-                />
-                <Styled.ActorName className="text-white">
-                  {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-                  {first_name} {last_name}
-                </Styled.ActorName>
-              </a>
-            </Link>
-          </div>
-        );
-      })}
+      {actors.map(({ id, first_name, last_name, image }) => (
+        <div className="swiper-slide">
+          <Link href="/actors/[id]" as={`/actors/${id}`}>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <a>
+              <Image
+                src={`${image.url}`}
+                data-srcset={`${image.url}`}
+                alt={`${first_name} ${last_name}`}
+                className="swiper-lazy"
+                width={205}
+                height={300}
+              />
+              <Styled.ActorName className="text-white">
+                {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+                {first_name} {last_name}
+              </Styled.ActorName>
+            </a>
+          </Link>
+        </div>
+      ))}
     </Swiper>
   );
 };
