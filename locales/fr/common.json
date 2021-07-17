@@ -1,0 +1,19 @@
+{
+  "yourUltimateMoviesGuide": "Votre guide des films ultimes",
+  "exploreYourFavoriteMovies": "Explorez vos films préférés",
+  "prev": "précédente",
+  "next": "suivante",
+  "submitMessage": "soumettre un message",
+  "emailAddress": "adresse e-mail",
+  "username": "Nom d'utilisateur",
+  "password": "Mot de passe",
+  "subject": "matière",
+  "message": "Un message",
+  "logout": "Se déconnecter",
+  "login": "connexion",
+  "loginWith": "Connectez-vous avec",
+  "register": "S'inscrire",
+  "newUser": "nouvel utilisateur",
+  "registerHere": "Inscrivez-vous ici",
+  "or": "Ou"
+}

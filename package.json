@@ -1,0 +1,49 @@
+{
+  "name": "movies-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint src/**/**/*.js  pages/*.js --fix .",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.1.2",
+    "@emotion/styled": "^11.0.0",
+    "autoprefixer": "^10.1.0",
+    "cloudinary-build-url": "^0.2.1",
+    "dotenv": "^8.2.0",
+    "fs": "^0.0.1-security",
+    "markdown": "^0.5.0",
+    "next": "10.0.3",
+    "next-auth": "^3.5.0",
+    "next-i18next": "^7.0.1",
+    "next-seo": "^4.17.0",
+    "next-translate": "^1.0.2",
+    "postcss": "^8.2.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-hook-form": "^6.15.4",
+    "react-id-swiper": "^4.0.0",
+    "react-router-dom": "^5.2.0",
+    "swiper": "^5.3.8",
+    "tailwindcss": "^2.0.2",
+    "twin.macro": "^2.0.7",
+    "universal-cookie": "^4.0.4"
+  },
+  "devDependencies": {
+    "eslint": "^7.15.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.2.0",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.2.1"
+  },
+  "main": "index.js",
+  "license": "MIT"
+}
