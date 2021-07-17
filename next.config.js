@@ -18,7 +18,7 @@ module.exports = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     domains: isProd ? ["res.cloudinary.com"] : [`${process.env.IMAGES_DOMAIN}`],
     path: isProd ? "" : "/_next/image",
-    loader: "default",
+    loader: isProd ? "" : "default",
   },
   webpack: (config, { isServer }) => {
     // Fixes npm packages that depend on `fs` module
