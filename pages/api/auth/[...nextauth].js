@@ -22,7 +22,7 @@ const options = {
       const isSignIn = user ? true : false;
       if (isSignIn) {
         const response = await fetch(
-          `${API_URL}/auth/${account.provider}/callback?access_token=${account?.accessToken}`
+          `${process.env.API_URL}/auth/${account.provider}/callback?access_token=${account?.accessToken}`
         );
         const data = await response.json();
         token.jwt = data.jwt;
