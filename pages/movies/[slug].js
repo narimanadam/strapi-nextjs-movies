@@ -50,7 +50,6 @@ export const getStaticProps = async (context) => {
   const { slug } = context.params;
   const res = await fetch(new URL(`${API_URL}/movies?slug=${slug}`));
   const movie = await res.json();
-  console.log("moviiieeee", movie);
 
   return {
     props: {

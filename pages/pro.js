@@ -4,6 +4,7 @@ import Cookies from "universal-cookie";
 
 const Pro = ({ articles }) => {
   const { t } = useTranslation("common");
+  console.log("articles", articles);
 
   return (
     <div className="container mx-auto">
@@ -30,7 +31,6 @@ export async function getInitialProps({ req }) {
     },
   });
   const articles = await res.json();
-  console.log("articles", articles);
 
   return {
     props: {
