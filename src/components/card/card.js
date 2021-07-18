@@ -14,12 +14,10 @@ export const Card = ({ movie }) => (
           alt={movie.title}
           width={movie.poster?.width}
           height={movie.poster?.height}
+          loading="lazy"
         />
         <Styled.Body>
           <Styled.Title>{movie.title}</Styled.Title>
-
-          {/* <Styled.Desc>{movie.release_date}</Styled.Desc> */}
-          {/* <Styled.Desc dangerouslySetInnerHTML={{ __html: movie.description }} /> */}
         </Styled.Body>
       </a>
     </Link>

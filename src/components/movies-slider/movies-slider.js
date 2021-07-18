@@ -6,8 +6,6 @@ import { useRouter } from "next/router";
 import * as Styled from "./movies-slider.styles";
 
 export const SwiperMoviesSlider = ({ movies }) => {
-  const { API_URL } = process.env;
-
   const params = {
     slidesPerView: 6,
     spaceBetween: 16,

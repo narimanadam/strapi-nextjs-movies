@@ -15,5 +15,6 @@
   "register": "S'inscrire",
   "newUser": "nouvel utilisateur",
   "registerHere": "Inscrivez-vous ici",
-  "or": "Ou"
+  "or": "Ou",
+  "ifYouSee": "si vous voyez cette page, cela signifie que vous êtes un utilisateur pro authentifié"
 }

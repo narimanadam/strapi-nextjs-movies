@@ -9,7 +9,13 @@ export const ArticleCard = ({ id, image, title, author, date }) => (
     <Link href="/articles/[id]" as={`/articles/${id}`}>
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a>
-        <Image src={image} alt={title} width={600} height={300} />
+        <Image
+          src={image}
+          alt={title}
+          width={600}
+          height={300}
+          loading="lazy"
+        />
         <Styled.Content>
           <Styled.Wrapper>
             <Styled.Author>{author}</Styled.Author>

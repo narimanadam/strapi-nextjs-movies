@@ -10,7 +10,7 @@ import { signOut } from "next-auth/client";
 import * as Styled from "./navigation.styles";
 
 export const Navigation = () => {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation();
   const router = useRouter();
   const cookies = new Cookies();
   const menuItems = useContext(HeaderContext);

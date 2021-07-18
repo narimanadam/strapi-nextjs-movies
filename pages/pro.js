@@ -1,12 +1,13 @@
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import Cookies from "universal-cookie";
 
 const Pro = ({ articles }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="container mx-auto">
-      <h1 className="text-white">
-        if you see this page it means you are an authenticated pro user
-      </h1>
+      <h1 className="text-white">{t("ifYouSee")}</h1>
       {articles?.articles?.map(({ title, body }) => (
         <div key={title}>
           <h2 className="text-white text-xl font-bold mb-3">{title}</h2>
@@ -17,7 +18,7 @@ const Pro = ({ articles }) => {
   );
 };
 
-export async function getInitialProps({ req }) {
+export async function getStaticProps({ req }) {
   const cookies = new Cookies(req.headers.cookie);
   const jwtToken = cookies.get("jwt");
 
@@ -29,6 +30,7 @@ export async function getInitialProps({ req }) {
     },
   });
   const articles = await res.json();
+  console.log("jwwwt", jwtToken);
 
   return {
     props: {

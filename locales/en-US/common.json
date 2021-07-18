@@ -15,5 +15,6 @@
   "register": "Register",
   "newUser": "New User",
   "registerHere": "Register Here",
-  "or": "Or"
+  "or": "Or",
+  "ifYouSee": "if you see this page it means you are an authenticated pro user"
 }

@@ -6,7 +6,7 @@ import useTranslation from "next-translate/useTranslation";
 import * as Styled from "./hero-banner.styles";
 
 export const HeroBanner = () => {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation();
 
   return (
     <Styled.HeroBanner>

@@ -9,7 +9,7 @@ const MoviesPage = ({ movies, page, numberOfMovies, limit }) => {
   return (
     <div className="container mx-auto mt-8">
       <div className="grid grid-cols-5 gap-5 mt-8">
-        {movies?.map((movie) => (
+        {movies.map((movie) => (
           <Card movie={movie} key={movie.id} />
         ))}
       </div>

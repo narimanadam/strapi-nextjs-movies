@@ -25,6 +25,7 @@ const SwiperSlider = ({ actors }) => {
                 src={`${image.url}`}
                 alt={`${first_name} ${last_name}`}
                 className="swiper-lazy"
+                loading="lazy"
                 width={205}
                 height={300}
               />
