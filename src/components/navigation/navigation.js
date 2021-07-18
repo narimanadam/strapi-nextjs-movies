@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { HeaderContext, AppContext } from "@movies-app/contexts";
 import { Button, LanguageSwitcher } from "@movies-app/components";
 import useTranslation from "next-translate/useTranslation";
-import { signOut } from "next-auth/client";
+import { signOut, useSession } from "next-auth/client";
 
 import * as Styled from "./navigation.styles";
 
@@ -15,6 +15,7 @@ export const Navigation = () => {
   const cookies = new Cookies();
   const menuItems = useContext(HeaderContext);
   const auth = useContext(AppContext);
+  const [session] = useSession();
 
   const logout = useCallback(() => {
     signOut();
@@ -36,7 +37,7 @@ export const Navigation = () => {
           </Styled.Item>
         ))}
         <Styled.Item>
-          {auth.isAuth ? (
+          {auth.isAuth || session ? (
             <Button type="button" className="link" onClick={logout}>
               {t("logout")}
             </Button>
