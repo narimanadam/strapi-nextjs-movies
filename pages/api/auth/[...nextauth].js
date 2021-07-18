@@ -18,6 +18,9 @@ const options = {
       session.id = user.id;
       return Promise.resolve(session);
     },
+    redirect: async (url) => {
+      return Promise.resolve(url);
+    },
     jwt: async (token, user, account) => {
       const isSignIn = user ? true : false;
       if (isSignIn) {
