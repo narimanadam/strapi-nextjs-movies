@@ -18,8 +18,8 @@ const options = {
       session.id = user.id;
       return Promise.resolve(session);
     },
-    redirect: async (url) => {
-      return Promise.resolve(url);
+    redirect: async (url, baseUrl) => {
+      return Promise.resolve(baseUrl);
     },
     jwt: async (token, user, account) => {
       const isSignIn = user ? true : false;
