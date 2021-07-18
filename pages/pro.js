@@ -3,7 +3,7 @@ import React from "react";
 import Cookies from "universal-cookie";
 
 const Pro = ({ articles }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
 
   return (
     <div className="container mx-auto">

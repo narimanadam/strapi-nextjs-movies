@@ -3,7 +3,7 @@ import { Input, Textarea, Button } from "@movies-app/components";
 import useTranslation from "next-translate/useTranslation";
 
 export const ContactForm = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
   const [values, setValues] = useState({});
 
   const handleChange = useCallback(

@@ -13,7 +13,7 @@ const Register = () => {
   const { register, handleSubmit, errors } = useForm();
   const [errorMessage, setErrorMessage] = useState("");
 
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
 
   const handleChange = useCallback(
     ({ target: { name, value } }) => {

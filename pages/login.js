@@ -22,7 +22,7 @@ const Login = ({ providers, session }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const { register, handleSubmit, errors } = useForm();
 
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
 
   const handleChange = useCallback(
     ({ target: { name, value } }) => {
