@@ -37,6 +37,8 @@ function MyApp({ Component, pageProps, navigation, jwt, session }) {
   useEffect(() => {
     console.log(consoleSignatureText, consoleSignatureStyle);
 
+    console.log("jwt", jwt);
+    console.log("session", session);
     if (jwt || session) {
       setIsAuth(true);
     } else {

@@ -37,6 +37,7 @@ export const Navigation = () => {
           </Styled.Item>
         ))}
         <Styled.Item>
+          {console.log("auth.isAuth", auth.isAuth)}
           {auth.isAuth || session ? (
             <Button type="button" className="link" onClick={logout}>
               {t("logout")}
