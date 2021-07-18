@@ -18,7 +18,7 @@ const Pro = ({ articles }) => {
   );
 };
 
-export async function getServerSideProps({ req }) {
+export async function getInitialProps({ req }) {
   const cookies = new Cookies(req.headers.cookie);
   const jwtToken = cookies.get("jwt");
 
@@ -30,7 +30,7 @@ export async function getServerSideProps({ req }) {
     },
   });
   const articles = await res.json();
-  console.log("articles", articles);
+  console.log("cookie", req.headers.cookie);
 
   return {
     props: {
