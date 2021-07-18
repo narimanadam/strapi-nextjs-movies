@@ -30,7 +30,7 @@ export async function getInitialProps({ req }) {
     },
   });
   const articles = await res.json();
-  console.log("jwwwt", jwtToken);
+  console.log("articles", articles);
 
   return {
     props: {
