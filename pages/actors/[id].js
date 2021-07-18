@@ -19,7 +19,7 @@ export const getStaticPaths = async () => {
 
   const res = await fetch(new URL(`${API_URL}/actors`));
   const actors = await res.json();
-  const paths = actors.map((actor) => ({
+  const paths = actors?.map((actor) => ({
     params: {
       id: actor.id.toString(),
     },
