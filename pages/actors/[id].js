@@ -1,16 +1,25 @@
 import React from "react";
 import { ActorItem } from "@movies-app/components";
+import { useRouter } from "next/router";
 
-const ActorDetailsPage = ({ actor }) => (
-  <div className="container mx-auto mt-8">
-    <ActorItem
-      name={`${actor.first_name} ${actor.last_name}`}
-      bio={actor.bio}
-      img={actor.image.url}
-      movies={actor.movies}
-    />
-  </div>
-);
+const ActorDetailsPage = ({ actor }) => {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    // your loading indicator
+    return <div>loading...</div>;
+  }
+  return (
+    <div className="container mx-auto mt-8">
+      <ActorItem
+        name={`${actor.first_name} ${actor.last_name}`}
+        bio={actor.bio}
+        img={actor.image.url}
+        movies={actor.movies}
+      />
+    </div>
+  );
+};
 
 export default ActorDetailsPage;
 
@@ -19,7 +28,7 @@ export const getStaticPaths = async () => {
 
   const res = await fetch(new URL(`${API_URL}/actors`));
   const actors = await res.json();
-  const paths = actors?.map((actor) => ({
+  const paths = actors.map((actor) => ({
     params: {
       id: actor.id.toString(),
     },
