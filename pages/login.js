@@ -110,7 +110,7 @@ const Login = ({ providers, session }) => {
           {Object.values(providers).map((provider) => (
             <button
               type="button"
-              onClick={() => signIn(provider)}
+              onClick={() => signIn(provider.id)}
               key={provider.name}
               style={{
                 backgroundColor: providerStyling[provider.id]?.hexCode,
