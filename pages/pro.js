@@ -18,8 +18,8 @@ const Pro = ({ articles }) => {
   );
 };
 
-export async function getInitialProps({ req }) {
-  const cookies = new Cookies(req?.headers?.cookie);
+export async function getInitialProps({ ctx }) {
+  const cookies = new Cookies(ctx?.req?.headers?.cookie);
   const jwtToken = cookies.get("jwt");
 
   const { API_URL } = process.env;
@@ -30,7 +30,6 @@ export async function getInitialProps({ req }) {
     },
   });
   const articles = await res.json();
-  console.log("cookie", req.headers.cookie);
 
   return {
     props: {
