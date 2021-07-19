@@ -18,8 +18,8 @@ const Pro = ({ articles }) => {
   );
 };
 
-export async function getStaticProps({ req }) {
-  const cookies = new Cookies(req.headers.cookie);
+export async function getInitialProps({ req }) {
+  const cookies = new Cookies(req?.headers?.cookie);
   const jwtToken = cookies.get("jwt");
 
   const { API_URL } = process.env;
