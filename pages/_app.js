@@ -68,7 +68,7 @@ function MyApp({ Component, pageProps, navigation, jwt, session }) {
 
 const { publicRuntimeConfig } = getConfig();
 
-MyApp.getInitialProps = async ({ Component, ctx }) => {
+MyApp.getStaticProps = async ({ Component, ctx }) => {
   let pageProps = {};
   const cookies = new Cookies(ctx?.req?.headers.cookie);
   const jwt = cookies.get("jwt");
