@@ -19,14 +19,14 @@ const Pro = ({ articles }) => {
 };
 
 export async function getInitialProps({ ctx }) {
-  const cookies = new Cookies(ctx?.req?.headers?.cookie);
-  const jwtToken = cookies.get("jwt");
+  const cookies = new Cookies(ctx);
+  const jwt = ctx.req ? ctx.req.headers.cookie : cookies.get("jwt");
 
   const { API_URL } = process.env;
 
   const res = await fetch(new URL(`${API_URL}/pro-page`), {
     headers: {
-      Authorization: `Bearer ${jwtToken}`,
+      Authorization: `Bearer ${jwt}`,
     },
   });
   const articles = await res.json();
