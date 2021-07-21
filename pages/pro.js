@@ -26,7 +26,7 @@ export async function getInitialProps({ ctx }) {
 
   const res = await fetch(new URL(`${API_URL}/pro-page`), {
     headers: {
-      Authorization: `Bearer ${jwt}`,
+      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjI2NjUxMzA1LCJleHAiOjE2MjkyNDMzMDV9.B6fsD91V0Q-5jzFat3wdUlmsvOf0tdzkykeE40a2j60`,
     },
   });
   const articles = await res.json();
