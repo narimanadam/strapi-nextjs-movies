@@ -18,9 +18,10 @@ const Pro = ({ articles }) => {
   );
 };
 
-export async function getInitialProps({ req, res }) {
+Pro.getInitialProps = async ({ req, res }) => {
   const cookies = new Cookies(req, res);
   const jwt = cookies.get("jwt");
+  console.log("jwwwwwt", jwt);
 
   const { API_URL } = process.env;
 
@@ -30,12 +31,13 @@ export async function getInitialProps({ req, res }) {
     },
   });
   const articles = await response.json();
+  console.log("articles", articles);
 
   return {
     props: {
       articles,
     },
   };
-}
+};
 
 export default Pro;
