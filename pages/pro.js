@@ -24,12 +24,12 @@ export async function getInitialProps({ req, res }) {
 
   const { API_URL } = process.env;
 
-  const res = await fetch(new URL(`${API_URL}/pro-page`), {
+  const response = await fetch(new URL(`${API_URL}/pro-page`), {
     headers: {
       Authorization: `Bearer ${jwt}`,
     },
   });
-  const articles = await res.json();
+  const articles = await response.json();
 
   return {
     props: {
