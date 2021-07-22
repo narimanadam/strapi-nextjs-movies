@@ -30,7 +30,7 @@ const consoleSignatureStyle =
 
 const consoleSignatureText = "%cWelcome to my Nextjs Movies App! ";
 
-function MyApp({ Component, pageProps, navigation, jwt, session, ctx }) {
+function MyApp({ Component, pageProps, navigation, jwt, session }) {
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps, navigation, jwt, session, ctx }) {
           <HeaderContext.Provider value={navigation}>
             <Header />
           </HeaderContext.Provider>
-          <Component {...pageProps} />
+          <Component />
         </Provider>
       </ThemeProvider>
     </AppContext.Provider>
@@ -64,8 +64,7 @@ function MyApp({ Component, pageProps, navigation, jwt, session, ctx }) {
 
 const { publicRuntimeConfig } = getConfig();
 
-MyApp.getServerSideProps = async ({ Component, ctx }) => {
-  let pageProps = {};
+export async function getStaticProps(ctx) {
   const jwt = ctx?.req ? ctx?.req?.cookies?.jwt : "";
 
   const session = await getSession({ ctx });
@@ -74,9 +73,6 @@ MyApp.getServerSideProps = async ({ Component, ctx }) => {
     new URL(`${publicRuntimeConfig.API_URL}/navigations`)
   );
   const navigation = await res.json();
-  if (Component.getInitialProps) {
-    pageProps = await Component.getInitialProps(ctx);
-  }
 
   if (!jwt && session === null) {
     if (ctx.pathname === "/pro") {
@@ -85,11 +81,10 @@ MyApp.getServerSideProps = async ({ Component, ctx }) => {
   }
 
   return {
-    pageProps,
     navigation,
     jwt,
     session,
   };
-};
+}
 
 export default MyApp;
