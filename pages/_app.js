@@ -7,7 +7,7 @@ import { Provider, getSession } from "next-auth/client";
 import { HeaderContext, AppContext } from "@movies-app/contexts";
 import { Header } from "@movies-app/layout";
 import { redirectUser } from "@movies-app/helpers";
-
+import cookies from "next-cookies";
 import SEO from "../next-seo.config";
 import GlobalStyles from "../styles/globals";
 import "tailwindcss/tailwind.css";
@@ -35,6 +35,7 @@ function MyApp({ Component, pageProps, navigation, jwt, session }) {
 
   useEffect(() => {
     console.log(consoleSignatureText, consoleSignatureStyle);
+    console.log("jwttttt", jwt);
     if (jwt || session) {
       setIsAuth(true);
     } else {
@@ -64,9 +65,9 @@ function MyApp({ Component, pageProps, navigation, jwt, session }) {
 
 const { publicRuntimeConfig } = getConfig();
 
-export async function getServerSideProps({ ctx }) {
-  // const jwt = ctx?.req ? ctx?.req?.cookies?.jwt : "";
-  const { jwt } = ctx.req.cookies;
+MyApp.getInitialProps = async ({ Component, ctx }) => {
+  let pageProps = {};
+  const jwt = cookies(ctx).jwt || "";
 
   const session = await getSession({ ctx });
 
@@ -74,6 +75,9 @@ export async function getServerSideProps({ ctx }) {
     new URL(`${publicRuntimeConfig.API_URL}/navigations`)
   );
   const navigation = await res.json();
+  if (Component.getInitialProps) {
+    pageProps = await Component.getInitialProps(ctx);
+  }
 
   if (!jwt && session === null) {
     if (ctx.pathname === "/pro") {
@@ -82,10 +86,11 @@ export async function getServerSideProps({ ctx }) {
   }
 
   return {
+    pageProps,
     navigation,
     jwt,
     session,
   };
-}
+};
 
 export default MyApp;
