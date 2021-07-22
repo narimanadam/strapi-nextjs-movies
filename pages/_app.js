@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps, navigation, jwt, session }) {
           <HeaderContext.Provider value={navigation}>
             <Header />
           </HeaderContext.Provider>
-          <Component />
+          <Component {...pageProps} />
         </Provider>
       </ThemeProvider>
     </AppContext.Provider>
