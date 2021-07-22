@@ -62,16 +62,13 @@ function MyApp({ Component, pageProps, navigation, jwt, session }) {
   );
 }
 
-const { publicRuntimeConfig } = getConfig();
-
 export async function getStaticProps(ctx) {
   const jwt = ctx?.req ? ctx?.req?.cookies?.jwt : "";
 
   const session = await getSession({ ctx });
+  const { API_URL } = process.env;
 
-  const res = await fetch(
-    new URL(`${publicRuntimeConfig.API_URL}/navigations`)
-  );
+  const res = await fetch(new URL(`${API_URL}/navigations`));
   const navigation = await res.json();
 
   if (!jwt && session === null) {
