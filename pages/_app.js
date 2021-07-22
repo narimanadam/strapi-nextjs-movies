@@ -66,10 +66,10 @@ function MyApp({ Component, pageProps, navigation, jwt, session }) {
 
 const { publicRuntimeConfig } = getConfig();
 
-MyApp.getInitialProps = async ({ Component }, ctx) => {
+MyApp.getInitialProps = async ({ Component, ctx }) => {
   let pageProps = {};
-  const cookies = new Cookies();
-  const jwt = ctx?.req ? ctx.req.headers.cookie : "";
+  // const cookies = new Cookies(ctx?.req?.headers.cookie);
+  const jwt = ctx?.req?.cookies?.jwt || "";
   const session = await getSession({ ctx });
 
   const res = await fetch(
