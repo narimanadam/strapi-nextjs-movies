@@ -67,7 +67,7 @@ const { publicRuntimeConfig } = getConfig();
 
 MyApp.getInitialProps = async ({ Component, ctx }) => {
   let pageProps = {};
-  const jwt = cookies(ctx).jwt || "";
+  const jwt = cookies(ctx) || "";
 
   const session = await getSession({ ctx });
 
