@@ -119,7 +119,7 @@ const Register = () => {
   );
 };
 
-Register.getInitialProps = async (context) => {
+Register.getStaticProps = async (context) => {
   return {
     providers: await providers(context),
   };
