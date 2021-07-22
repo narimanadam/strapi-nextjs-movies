@@ -62,14 +62,21 @@ function MyApp({ Component, pageProps, navigation, jwt, session }) {
   );
 }
 
-export async function getStaticProps(ctx) {
+const { publicRuntimeConfig } = getConfig();
+
+MyApp.getInitialProps = async ({ Component, ctx }) => {
+  let pageProps = {};
   const jwt = ctx?.req ? ctx?.req?.cookies?.jwt : "";
 
   const session = await getSession({ ctx });
-  const { API_URL } = process.env;
 
-  const res = await fetch(new URL(`${API_URL}/navigations`));
+  const res = await fetch(
+    new URL(`${publicRuntimeConfig.API_URL}/navigations`)
+  );
   const navigation = await res.json();
+  if (Component.getInitialProps) {
+    pageProps = await Component.getInitialProps(ctx);
+  }
 
   if (!jwt && session === null) {
     if (ctx.pathname === "/pro") {
@@ -78,10 +85,11 @@ export async function getStaticProps(ctx) {
   }
 
   return {
+    pageProps,
     navigation,
     jwt,
     session,
   };
-}
+};
 
 export default MyApp;
