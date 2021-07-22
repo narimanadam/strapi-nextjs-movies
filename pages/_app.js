@@ -79,7 +79,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
     pageProps = await Component.getInitialProps(ctx);
   }
 
-  if (!jwt && session === null) {
+  if (jwt === null || session === null) {
     if (ctx.pathname === "/pro") {
       redirectUser(ctx, "/login");
     }

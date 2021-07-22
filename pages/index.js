@@ -15,7 +15,7 @@ const Home = ({ movies, genres }) => {
   );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const { API_URL } = process.env;
 
   const moviesRes = await fetch(new URL(`${API_URL}/movies`));
