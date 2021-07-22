@@ -66,24 +66,23 @@ function MyApp({ Component, pageProps, navigation, jwt, session }) {
 
 const { publicRuntimeConfig } = getConfig();
 
-MyApp.getServerSideProps = async ({ req, res }) => {
+MyApp.getInitialProps = async ({ Component, ctx }) => {
   const cookies = new Cookies();
-  const jwt = req?.cookies?.jwt || "";
-  const session = await getSession({ req });
+  const jwt = ctx?.req?.cookies?.jwt || "";
+  const session = await getSession({ ctx });
 
-  const response = await fetch(
+  const res = await fetch(
     new URL(`${publicRuntimeConfig.API_URL}/navigations`)
   );
-  const navigation = await response.json();
+  const navigation = await res.json();
 
   if (!jwt && session === null) {
-    // if (ctx.pathname === "/pro") {
-    //   redirectUser(ctx, "/login");
-    // }
+    if (ctx.pathname === "/pro") {
+      redirectUser(ctx, "/login");
+    }
   }
 
   return {
-    // pageProps,
     navigation,
     jwt,
     session,
