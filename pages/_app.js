@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { ThemeProvider } from "@emotion/react";
 import getConfig from "next/config";
 import { DefaultSeo } from "next-seo";
-import Cookies from "universal-cookie";
 import { Provider, getSession } from "next-auth/client";
 
 import { HeaderContext, AppContext } from "@movies-app/contexts";
@@ -36,7 +35,7 @@ function MyApp({ Component, pageProps, navigation, jwt, session }) {
 
   useEffect(() => {
     console.log(consoleSignatureText, consoleSignatureStyle);
-
+    console.log("jwwwqqqt", jwt);
     if (jwt || session) {
       setIsAuth(true);
     } else {
@@ -68,8 +67,8 @@ const { publicRuntimeConfig } = getConfig();
 
 MyApp.getInitialProps = async ({ Component, ctx }) => {
   let pageProps = {};
-  // const cookies = new Cookies(ctx?.req?.headers.cookie);
-  const jwt = ctx?.req?.cookies?.jwt || "";
+  const jwt = ctx?.req.cookies.jwt || "";
+
   const session = await getSession({ ctx });
 
   const res = await fetch(
