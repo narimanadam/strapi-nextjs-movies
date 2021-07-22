@@ -64,9 +64,10 @@ function MyApp({ Component, pageProps, navigation, jwt, session }) {
 
 const { publicRuntimeConfig } = getConfig();
 
-MyApp.getInitialProps = async ({ Component, ctx }) => {
+export async function getServerSideProps({ Component, ctx }) {
   let pageProps = {};
-  const jwt = ctx?.req ? ctx?.req?.cookies?.jwt : "";
+  // const jwt = ctx?.req ? ctx?.req?.cookies?.jwt : "";
+  const { jwt } = ctx.req.cookies;
 
   const session = await getSession({ ctx });
 
@@ -90,6 +91,6 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
     jwt,
     session,
   };
-};
+}
 
 export default MyApp;
