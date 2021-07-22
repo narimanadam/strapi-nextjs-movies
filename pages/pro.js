@@ -19,7 +19,6 @@ const Pro = ({ articles }) => {
 };
 
 export async function getServerSideProps({ req }) {
-  console.log("req", req.cookies.jwt);
   const jwt = req.cookies.jwt || "";
 
   const { API_URL } = process.env;
