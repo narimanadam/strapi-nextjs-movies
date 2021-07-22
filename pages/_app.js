@@ -35,7 +35,6 @@ function MyApp({ Component, pageProps, navigation, jwt, session, ctx }) {
 
   useEffect(() => {
     console.log(consoleSignatureText, consoleSignatureStyle);
-    console.log("ctx", ctx);
     if (jwt || session) {
       setIsAuth(true);
     } else {
@@ -65,7 +64,7 @@ function MyApp({ Component, pageProps, navigation, jwt, session, ctx }) {
 
 const { publicRuntimeConfig } = getConfig();
 
-MyApp.getInitialProps = async ({ Component, ctx }) => {
+MyApp.getServerSideProps = async ({ Component, ctx }) => {
   let pageProps = {};
   const jwt = ctx?.req ? ctx?.req?.cookies?.jwt : "";
 
@@ -90,7 +89,6 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
     navigation,
     jwt,
     session,
-    ctx,
   };
 };
 
