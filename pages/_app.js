@@ -30,12 +30,12 @@ const consoleSignatureStyle =
 
 const consoleSignatureText = "%cWelcome to my Nextjs Movies App! ";
 
-function MyApp({ Component, pageProps, navigation, jwt, session }) {
+function MyApp({ Component, pageProps, navigation, jwt, session, ctx }) {
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
     console.log(consoleSignatureText, consoleSignatureStyle);
-    console.log("jwwwqqqt", jwt);
+    console.log("ctx", ctx);
     if (jwt || session) {
       setIsAuth(true);
     } else {
@@ -90,6 +90,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
     navigation,
     jwt,
     session,
+    ctx,
   };
 };
 
