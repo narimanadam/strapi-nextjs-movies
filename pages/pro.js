@@ -18,7 +18,7 @@ const Pro = ({ articles }) => {
   );
 };
 
-export async function getStaticProps({ req }) {
+export async function getServerSideProps({ req }) {
   const jwt = req.cookies.jwt || "";
 
   const { API_URL } = process.env;
