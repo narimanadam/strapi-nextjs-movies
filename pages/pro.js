@@ -1,6 +1,5 @@
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
-import Cookies from "cookies";
 
 const Pro = ({ articles }) => {
   const { t } = useTranslation("common");
@@ -8,7 +7,8 @@ const Pro = ({ articles }) => {
   return (
     <div className="container mx-auto">
       <h1 className="text-white">{t("ifYouSee")}</h1>
-      {articles?.map(({ title, body }) => (
+      {console.log("Arrrr", articles)}
+      {articles.articles.map(({ title, body }) => (
         <div key={title}>
           <h2 className="text-white text-xl font-bold mb-3">{title}</h2>
           <span className="text-white">{body}</span>
@@ -18,10 +18,9 @@ const Pro = ({ articles }) => {
   );
 };
 
-Pro.getInitialProps = async ({ req, res }) => {
-  const cookies = new Cookies(req, res);
-  const jwt = cookies.get("jwt");
-  console.log("jwwwwwt", jwt);
+export async function getServerSideProps({ req }) {
+  console.log("req", req.cookies.jwt);
+  const jwt = req.cookies.jwt || "";
 
   const { API_URL } = process.env;
 
@@ -31,13 +30,12 @@ Pro.getInitialProps = async ({ req, res }) => {
     },
   });
   const articles = await response.json();
-  console.log("articles", articles);
 
   return {
     props: {
       articles,
     },
   };
-};
+}
 
 export default Pro;
