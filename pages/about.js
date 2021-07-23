@@ -23,7 +23,6 @@ const About = ({ data }) => {
 
 export default About;
 
-// const { publicRuntimeConfig } = getConfig();
 export async function getStaticProps() {
   const { API_URL } = process.env;
   const res = await fetch(new URL(`${API_URL}/about-page`));

@@ -25,26 +25,26 @@ const Movie = ({ movie }) => {
 
 export default Movie;
 
-export const getStaticPaths = async () => {
-  const { API_URL } = process.env;
+// export const getStaticPaths = async () => {
+//   const { API_URL } = process.env;
 
-  const res = await fetch(new URL(`${API_URL}/movies`));
-  const movies = await res.json();
+//   const res = await fetch(new URL(`${API_URL}/movies`));
+//   const movies = await res.json();
 
-  // generate the paths
-  const paths = movies.map((movie) => ({
-    params: {
-      slug: movie.slug,
-    },
-  }));
+//   // generate the paths
+//   const paths = movies.map((movie) => ({
+//     params: {
+//       slug: movie.slug,
+//     },
+//   }));
 
-  return {
-    paths,
-    fallback: true,
-  };
-};
+//   return {
+//     paths,
+//     fallback: true,
+//   };
+// };
 
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   const { API_URL } = process.env;
 
   const { slug } = context.params;
