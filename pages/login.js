@@ -142,7 +142,7 @@ const Login = ({ providers, session }) => {
   );
 };
 
-Login.getServerSideProps = async (context) => {
+Login.getStaticProps = async (context) => {
   const session = await getSession(context);
   return {
     providers: await providers(context),
