@@ -1,14 +1,16 @@
-import useTranslation from "next-translate/useTranslation";
 import React from "react";
+import cookies from "next-cookies";
+import useTranslation from "next-translate/useTranslation";
 
-const Pro = ({ articles }) => {
+const Pro = ({ articles, jwt }) => {
   const { t } = useTranslation("common");
 
   return (
     <div className="container mx-auto">
       <h1 className="text-white">{t("ifYouSee")}</h1>
       {console.log("Arrrr", articles)}
-      {articles?.articles.map(({ title, body }) => (
+      {console.log("jwttttqqqq", jwt)}
+      {articles?.articles?.map(({ title, body }) => (
         <div key={title}>
           <h2 className="text-white text-xl font-bold mb-3">{title}</h2>
           <span className="text-white">{body}</span>
@@ -18,8 +20,8 @@ const Pro = ({ articles }) => {
   );
 };
 
-export async function getServerSideProps({ req }) {
-  const jwt = req.cookies.jwt || "";
+export async function getServerSideProps(ctx) {
+  const jwt = cookies(ctx).jwt || "";
 
   const { API_URL } = process.env;
 
@@ -33,6 +35,7 @@ export async function getServerSideProps({ req }) {
   return {
     props: {
       articles,
+      jwt,
     },
   };
 }
