@@ -1,5 +1,5 @@
 import React from "react";
-
+import getConfig from "next/config";
 import useTranslation from "next-translate/useTranslation";
 import cookies from "next-cookies";
 
@@ -20,15 +20,20 @@ const Pro = ({ articles }) => {
   );
 };
 
+const { publicRuntimeConfig } = getConfig();
+
 export async function getServerSideProps(ctx) {
   const { API_URL } = process.env;
   const jwt = cookies(ctx).jwt || "";
 
-  const response = await fetch(new URL(`${API_URL}/pro-page`), {
-    headers: {
-      Authorization: `Bearer ${jwt}`,
-    },
-  });
+  const response = await fetch(
+    new URL(`${publicRuntimeConfig.API_URL}/pro-page`),
+    {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    }
+  );
   const articles = await response.json();
 
   return {
