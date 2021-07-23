@@ -26,27 +26,27 @@ const BlogItemPage = ({ article }) => {
 
 export default BlogItemPage;
 
-export const getStaticPaths = async () => {
-  const { API_URL } = process.env;
+// export const getStaticPaths = async () => {
+//   const { API_URL } = process.env;
 
-  const res = await fetch(new URL(`${API_URL}/articles`));
-  const articles = await res.json();
+//   const res = await fetch(new URL(`${API_URL}/articles`));
+//   const articles = await res.json();
 
-  // generate the paths
-  const paths = articles.map((article) => ({
-    params: {
-      id: article.id.toString(),
-    },
-    // keep in mind if post.id is a number you need to stringify post.id
-  }));
+//   // generate the paths
+//   const paths = articles.map((article) => ({
+//     params: {
+//       id: article.id.toString(),
+//     },
+//     // keep in mind if post.id is a number you need to stringify post.id
+//   }));
 
-  return {
-    paths,
-    fallback: true,
-  };
-};
+//   return {
+//     paths,
+//     fallback: true,
+//   };
+// };
 
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   const { API_URL } = process.env;
 
   const { id } = context.params;
