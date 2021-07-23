@@ -22,7 +22,7 @@ const About = ({ data }) => {
 
 export default About;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const { API_URL } = process.env;
   const res = await fetch(new URL(`${API_URL}/about-page`));
   const data = await res.json();
