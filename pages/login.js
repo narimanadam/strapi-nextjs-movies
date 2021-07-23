@@ -107,7 +107,7 @@ const Login = ({ providers, session }) => {
         <div className="text-white text-center my-8">{t("or")}</div>
 
         <div className="flex flex-col items-center">
-          {Object.values(providers)?.map((provider) => (
+          {Object.values(providers).map((provider) => (
             <button
               type="button"
               onClick={() => signIn(provider.id)}
@@ -142,7 +142,7 @@ const Login = ({ providers, session }) => {
   );
 };
 
-Login.getStaticProps = async (context) => {
+Login.getInitialProps = async (context) => {
   const session = await getSession(context);
   return {
     providers: await providers(context),
