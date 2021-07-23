@@ -23,24 +23,24 @@ const ActorDetailsPage = ({ actor }) => {
 
 export default ActorDetailsPage;
 
-export const getStaticPaths = async () => {
-  const { API_URL } = process.env;
+// export const getStaticPaths = async () => {
+//   const { API_URL } = process.env;
 
-  const res = await fetch(new URL(`${API_URL}/actors`));
-  const actors = await res.json();
-  const paths = actors.map((actor) => ({
-    params: {
-      id: actor.id.toString(),
-    },
-  }));
+//   const res = await fetch(new URL(`${API_URL}/actors`));
+//   const actors = await res.json();
+//   const paths = actors.map((actor) => ({
+//     params: {
+//       id: actor.id.toString(),
+//     },
+//   }));
 
-  return {
-    paths,
-    fallback: true,
-  };
-};
+//   return {
+//     paths,
+//     fallback: true,
+//   };
+// };
 
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   const { API_URL } = process.env;
 
   const { id } = context.params;
