@@ -30,7 +30,6 @@ export async function getServerSideProps() {
     props: {
       articles,
     },
-    revalidate: 1,
   };
 }
 
