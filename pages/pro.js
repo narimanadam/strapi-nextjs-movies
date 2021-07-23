@@ -1,5 +1,7 @@
-import useTranslation from "next-translate/useTranslation";
 import React from "react";
+
+import useTranslation from "next-translate/useTranslation";
+import cookies from "next-cookies";
 
 const Pro = ({ articles }) => {
   const { t } = useTranslation("common");
@@ -18,10 +20,9 @@ const Pro = ({ articles }) => {
   );
 };
 
-export async function getServerSideProps({ req }) {
-  const jwt = req.cookies.jwt || "";
-
+export async function getServerSideProps(ctx) {
   const { API_URL } = process.env;
+  const jwt = cookies(ctx).jwt || "";
 
   const response = await fetch(new URL(`${API_URL}/pro-page`), {
     headers: {
