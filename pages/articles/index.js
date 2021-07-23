@@ -20,7 +20,7 @@ const Blog = ({ articles }) => {
   );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const { API_URL } = process.env;
 
   const res = await fetch(new URL(`${API_URL}/articles`));
