@@ -1,5 +1,4 @@
 import React from "react";
-import getConfig from "next/config";
 import { NextSeo } from "next-seo";
 
 const About = ({ data }) => {
@@ -23,7 +22,7 @@ const About = ({ data }) => {
 
 export default About;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const { API_URL } = process.env;
   const res = await fetch(new URL(`${API_URL}/about-page`));
   const data = await res.json();
@@ -31,6 +30,5 @@ export async function getStaticProps() {
     props: {
       data,
     },
-    revalidate: 1,
   };
 }
