@@ -18,7 +18,6 @@ const providerStyling = {
 };
 
 const Login = ({ providers, session }) => {
-  console.log("sessss", session);
   const [values, setValues] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
   const { register, handleSubmit, errors } = useForm();

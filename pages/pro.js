@@ -1,6 +1,7 @@
 import React from "react";
 import cookies from "next-cookies";
 import useTranslation from "next-translate/useTranslation";
+import { getSession } from "next-auth/client";
 
 const Pro = ({ articles, jwt }) => {
   const { t } = useTranslation("common");
@@ -21,13 +22,15 @@ const Pro = ({ articles, jwt }) => {
 };
 
 export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx);
+
   const jwt = cookies(ctx).jwt || "";
 
   const { API_URL } = process.env;
 
   const response = await fetch(new URL(`${API_URL}/pro-page`), {
     headers: {
-      Authorization: `Bearer ${jwt}`,
+      Authorization: `Bearer ${session ? session.jwt : jwt}`,
     },
   });
   const articles = await response.json();
