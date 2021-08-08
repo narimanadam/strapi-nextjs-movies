@@ -58,6 +58,9 @@ const Register = () => {
         path: "/",
         maxAge: 30 * 24 * 60 * 60,
       });
+      cookies.set("user", registerRes.user, {
+        path: "/",
+      });
       Router.push("/pro");
     } catch (error) {
       console.log("Error", error);
