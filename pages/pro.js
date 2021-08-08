@@ -1,6 +1,5 @@
 import React from "react";
 import cookies from "next-cookies";
-import Cookies from "universal-cookie";
 import useTranslation from "next-translate/useTranslation";
 import { getSession } from "next-auth/client";
 
@@ -22,10 +21,8 @@ const Pro = ({ articles }) => {
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
-  const cookie = new Cookies();
 
-  // const jwt = cookies(ctx).jwt || "";
-  const jwt = cookie.get(ctx).jwt || "";
+  const jwt = cookies(ctx).jwt || "";
 
   const { API_URL } = process.env;
 
