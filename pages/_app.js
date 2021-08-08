@@ -8,6 +8,7 @@ import { HeaderContext, AppContext } from "@movies-app/contexts";
 import { Header } from "@movies-app/layout";
 import { redirectUser } from "@movies-app/helpers";
 import cookies from "next-cookies";
+import Cookies from "universal-cookie";
 import SEO from "../next-seo.config";
 import GlobalStyles from "../styles/globals";
 import "tailwindcss/tailwind.css";
@@ -67,7 +68,10 @@ const { publicRuntimeConfig } = getConfig();
 
 MyApp.getInitialProps = async ({ Component, ctx }) => {
   let pageProps = {};
-  const jwt = cookies(ctx).jwt || "";
+  const cookie = new Cookies();
+
+  // const jwt = cookies(ctx).jwt || "";
+  const jwt = cookie.get(ctx).jwt || "";
 
   const session = await getSession({ ctx });
 
